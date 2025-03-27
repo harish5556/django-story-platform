@@ -1,0 +1,17 @@
+<form method="post">
+    {% csrf_token %}
+    <label>Full Name:</label>
+    <input type="text" name="full_name" required>
+
+    <label>Gender:</label>
+    <select name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <label>Mobile Number:</label>
+    <input type="text" name="mobile" required>
+
+    <button type="submit">Save Profile</button>
+</form>

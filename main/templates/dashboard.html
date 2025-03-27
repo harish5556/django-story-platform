@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Writing Platform</title>
+</head>
+<body>
+    <h1>Welcome to the Collaborative Story Writing Platform</h1>
+
+    {% if user.is_authenticated %}
+        <p>Logged in as: {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+
+        <h2>Write a New Story</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label>Title:</label> {{ form.title }}<br>
+            <label>Content:</label> {{ form.content }}<br>
+            <button type="submit">Submit Story</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> to write a story.</p>
+    {% endif %}
+
+    <h2>All Stories</h2>
+    {% if stories %}
+        <ul>
+            {% for story in stories %}
+                <li>
+                    <h3>{{ story.title }}</h3>
+                    <p>{{ story.content|truncatewords:50 }}</p>
+                    <p><strong>By:</strong> {{ story.user.username }}</p>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stories yet. Be the first to write one!</p>
+    {% endif %}
+</body>
+</html>
