@@ -1,41 +1,65 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story Writing Platform</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <h1>Welcome to the Collaborative Story Writing Platform</h1>
 
-    {% if user.is_authenticated %}
-        <p>Logged in as: {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Story<span>Hub</span></div>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn">Login</a>
+            {% endif %}
+        </div>
+    </nav>
 
-        <h2>Write a New Story</h2>
-        <form method="post">
-            {% csrf_token %}
-            <label>Title:</label> {{ form.title }}<br>
-            <label>Content:</label> {{ form.content }}<br>
-            <button type="submit">Submit Story</button>
-        </form>
-    {% else %}
-        <p><a href="{% url 'login' %}">Login</a> to write a story.</p>
-    {% endif %}
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Write & Share <span>Your Stories</span></h1>
+        <p>Unleash your creativity with AI-powered story writing.</p>
+        <a href="#write" class="cta-btn">Start Writing</a>
+    </header>
 
-    <h2>All Stories</h2>
-    {% if stories %}
-        <ul>
-            {% for story in stories %}
-                <li>
-                    <h3>{{ story.title }}</h3>
-                    <p>{{ story.content|truncatewords:50 }}</p>
-                    <p><strong>By:</strong> {{ story.user.username }}</p>
-                    <hr>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No stories yet. Be the first to write one!</p>
-    {% endif %}
+    <!-- Story Submission -->
+    <section class="story-form" id="write">
+        {% if user.is_authenticated %}
+            <h2>Write a New Story</h2>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Story Title" required>
+                <textarea name="content" placeholder="Start writing your story..." required></textarea>
+                <button type="submit">Submit Story</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'login' %}" class="btn">Login</a> to write a story.</p>
+        {% endif %}
+    </section>
+
+    <!-- Display Stories -->
+    <section class="stories">
+        <h2>Recent Stories</h2>
+        {% if stories %}
+            <div class="story-container">
+                {% for story in stories %}
+                    <div class="story-card">
+                        <h3>{{ story.title }}</h3>
+                        <p>{{ story.content|truncatewords:30 }}</p>
+                        <span>By: {{ story.user.username }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No stories yet. Be the first to write one!</p>
+        {% endif %}
+    </section>
+
 </body>
 </html>

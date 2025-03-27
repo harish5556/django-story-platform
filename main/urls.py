@@ -8,6 +8,7 @@ urlpatterns = [
     path("", homepage, name="homepage"),
     path('send_otp/', send_otp, name='send_otp'),
     path('accounts/login/', send_otp, name='send_otp'),
+    path('login/', send_otp, name='send_otp'),
     path('verify/', verify_otp, name='verify_otp'),
     path('dashboard/', dashboard, name='dashboard'),
     path('logout/', logout_user, name='logout'),

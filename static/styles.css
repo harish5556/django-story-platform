@@ -1,0 +1,133 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e2e;
+    color: white;
+    text-align: center;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #292b3a;
+    padding: 15px 30px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00c4ff;
+}
+
+.nav-links .btn {
+    background: #00c4ff;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+    padding: 60px 20px;
+    background: #343650;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #c4c4c4;
+}
+
+/* Story Form */
+.story-form {
+    background: #252735;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.story-form h2 {
+    color: #00c4ff;
+}
+
+.story-form input, .story-form textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.story-form button {
+    background: #00c4ff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Stories Section */
+.stories {
+    padding: 40px;
+}
+
+.story-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.story-card {
+    background: #2e3045;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.story-card h3 {
+    color: #00c4ff;
+}
+
+.story-card p {
+    font-size: 14px;
+    color: #c4c4c4;
+}
+
+.story-card span {
+    font-size: 12px;
+    color: #888;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: red;  /* Changed to red */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: darkred;  /* Darker red on hover */
+    color: white;
+}
