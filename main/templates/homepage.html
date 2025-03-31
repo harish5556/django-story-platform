@@ -1,74 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Story Writer | Home</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 32px;
-            color: #333;
-        }
-        p {
-            font-size: 18px;
-            color: #666;
-            margin: 15px 0;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 10px;
-            font-size: 18px;
-        }
-        .btn:hover {
-            background: #0056b3;
+    <title>Welcome to StoryHub</title>
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
+     <style>
+        .hero {
+            background: url("{% static 'images/homepage_background.jpg' %}") no-repeat center center/cover;
+            height: 100vh;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome to AI Story Writer</h1>
-        <p>Collaborate with AI to create and share amazing stories.</p>
-        
-        <a href="{% url 'send_otp' %}" class="btn">Login</a>
-        
-        <h2>✨ Start Your Story Today</h2>
-        <p>Write solo or collaborate with AI to craft engaging stories effortlessly.</p>
-    
-
-        <h2>🔍 Discover & Read</h2>
-        <p>Browse stories created by the community and get inspired.</p>
-        
-        <h2>🚀 How It Works</h2>
-        <p>1. Start a new story with AI assistance. <br>
-           2. Edit, refine, and collaborate. <br>
-           3. Publish and share with the world!</p><br>
-        <p>Click below to log in</p>
-        <a href="/send_otp" class="btn">Login</a>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="content">
+            <h1>Welcome to <span>StoryHub</span></h1>
+            <p>Write, Share, and Discover Stories with AI-powered assistance.</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn">Logout</a>
+            {% else %}
+                <a href="{% url 'send_otp' %}" class="btn">Login</a>
+            {% endif %}
+        </div>
     </div>
 
 </body>
