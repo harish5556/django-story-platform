@@ -4,62 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Story Writing Platform</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
+    <div class="dashboard-container">
+        <div class="dashboard-box">
+            <h1>Your Story Dashboard</h1>
+            <p>Write and share your stories with the world.</p>
 
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">Story<span>Hub</span></div>
-        <div class="nav-links">
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="btn">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn">Login</a>
-            {% endif %}
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Write & Share <span>Your Stories</span></h1>
-        <p>Unleash your creativity with AI-powered story writing.</p>
-        <a href="#write" class="cta-btn">Start Writing</a>
-    </header>
-
-    <!-- Story Submission -->
-    <section class="story-form" id="write">
-        {% if user.is_authenticated %}
-            <h2>Write a New Story</h2>
-            <form method="post">
+            <!-- Story Writing Form -->
+            <form method="POST" action="{% url 'dashboard' %}">
                 {% csrf_token %}
-                <input type="text" name="title" placeholder="Story Title" required>
-                <textarea name="content" placeholder="Start writing your story..." required></textarea>
-                <button type="submit">Submit Story</button>
+                <input type="text" name="title" placeholder="Enter story title..." class="story-title" required>
+                <textarea name="content" placeholder="Write your story here..." required></textarea>
+                <button type="submit" class="dashboard-btn">Post Story</button>
             </form>
-        {% else %}
-            <p><a href="{% url 'login' %}" class="btn">Login</a> to write a story.</p>
-        {% endif %}
-    </section>
 
-    <!-- Display Stories -->
-    <section class="stories">
-        <h2>Recent Stories</h2>
-        {% if stories %}
-            <div class="story-container">
-                {% for story in stories %}
-                    <div class="story-card">
-                        <h3>{{ story.title }}</h3>
-                        <p>{{ story.content|truncatewords:30 }}</p>
-                        <span>By: {{ story.user.username }}</span>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <p>No stories yet. Be the first to write one!</p>
-        {% endif %}
-    </section>
+            <!-- Display Past Stories -->
+            <h2>Your Stories</h2>
+        <div class="story-list">
+            {% for story in stories %}
+                <div class="story-item">
+                    <h3 class="story-title-display">{{ story.title }}</h3>
+                    <p class="story-content">{{ story.content }}</p>
+                    <small class="story-meta">Posted on {{ story.created_at|date:"F d, Y" }}</small>
+                </div>
+    {% empty %}
+        <p class="no-story">No stories yet. Start writing now!</p>
+    {% endfor %}
+</div>
 
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </div>
+    </div>
 </body>
 </html>

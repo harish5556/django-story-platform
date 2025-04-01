@@ -1,133 +1,154 @@
-/* General Styling */
-body {
-    font-family: 'Arial', sans-serif;
+/* General Styles */
+body, html {
     margin: 0;
     padding: 0;
-    background-color: #1e1e2e;
-    color: white;
-    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
 }
 
-/* Navbar */
-nav {
+/* Dashboard Page Background */
+.dashboard-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: #292b3a;
-    padding: 15px 30px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #00c4ff;
-}
-
-.nav-links .btn {
-    background: #00c4ff;
-    padding: 10px 15px;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-/* Hero Section */
-.hero {
-    padding: 60px 20px;
-    background: #343650;
-}
-
-.hero h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 18px;
-    color: #c4c4c4;
-}
-
-/* Story Form */
-.story-form {
-    background: #252735;
-    padding: 30px;
-    margin: 20px auto;
-    max-width: 500px;
-    border-radius: 8px;
-}
-
-.story-form h2 {
-    color: #00c4ff;
-}
-
-.story-form input, .story-form textarea {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-}
-
-.story-form button {
-    background: #00c4ff;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    margin-top: 10px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* Stories Section */
-.stories {
-    padding: 40px;
-}
-
-.story-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
-}
-
-.story-card {
-    background: #2e3045;
+    min-height: 100vh;
+    background: url("/static/images/homepage_background.jpg") no-repeat center center/cover;
     padding: 20px;
-    width: 300px;
+}
+
+/* Dashboard Content Box */
+.dashboard-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+.dashboard-box h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.dashboard-box p {
+    color: #555;
+}
+
+/* Story Writing Area */
+.dashboard-box textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    text-align: left;
+    font-size: 16px;
+    resize: none;
 }
 
-.story-card h3 {
-    color: #00c4ff;
-}
-
-.story-card p {
-    font-size: 14px;
-    color: #c4c4c4;
-}
-
-.story-card span {
-    font-size: 12px;
-    color: #888;
-}
-
-.cta-btn {
+/* Post Story Button */
+.dashboard-btn {
     display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background: red;  /* Changed to red */
-    color: white;
+    width: 100%;
+    padding: 14px;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: 0.3s;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
 }
 
-.cta-btn:hover {
-    background: darkred;  /* Darker red on hover */
+.dashboard-btn:hover {
+    background-color: darkred;
+}
+
+/* Story List */
+.story-list {
+    margin-top: 20px;
+    text-align: left;
+    max-height: 300px;  /* Keeps it compact */
+    overflow-y: auto;   /* Adds scroll if too many stories */
+    border-top: 2px solid #ddd;
+    padding-top: 10px;
+}
+
+/* Individual Story Box */
+.story-item {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.story-item:hover {
+    transform: scale(1.02);
+}
+
+/* Story Content */
+.story-content {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* Story Meta */
+.story-meta {
+    font-size: 12px;
+    color: #777;
+}
+
+/* No Stories Message */
+.no-story {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
+    background-color: #333;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-box {
+        width: 90%;
+    }
+}
+.story-title {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Story Title Display */
+.story-title-display {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
 }
